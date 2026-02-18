@@ -51,6 +51,18 @@ public class BarcoServiceTest {
         assertEquals(b1.getNombre(), result.getNombre());
     }
 
+    @Test
+    void testSaveOk() {
+        Barco b1 = this.createBarco();
+
+        when(this.barcoRepository.save(b1)).thenReturn(b1);
+        Barco result = this.barcoService.save(b1);
+
+        assertNotNull(result);
+        verify(this.barcoRepository).save(b1);
+        assertEquals(b1.getNombre(), result.getNombre());
+    }
+
     private Barco createBarco(){
         Barco b1 = new Barco();
 
