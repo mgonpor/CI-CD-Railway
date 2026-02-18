@@ -25,7 +25,7 @@ public class Barco {
     @JsonIgnore
     private int idPuerto;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_puerto", referencedColumnName = "id", insertable = false, updatable = false)
     private Puerto puerto;
 
