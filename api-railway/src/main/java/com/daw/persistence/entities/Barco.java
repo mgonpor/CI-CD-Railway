@@ -22,6 +22,7 @@ public class Barco {
     private String usuario;
 
     @Column(name = "id_puerto")
+    @JsonIgnore
     private int idPuerto;
 
     @ManyToOne(fetch = FetchType.LAZY)
