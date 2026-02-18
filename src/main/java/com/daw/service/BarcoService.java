@@ -32,4 +32,8 @@ public class BarcoService {
     public Barco save(Barco barco) {
         return this.barcoRepository.save(barco);
     }
+
+    public void delete(int id) {
+        this.barcoRepository.deleteById(id);
+    }
 }
