@@ -63,6 +63,16 @@ public class BarcoServiceTest {
         assertEquals(b1.getNombre(), result.getNombre());
     }
 
+    @Test
+    void testDeleteOk() {
+        Barco b1 = this.createBarco();
+
+        when(this.barcoRepository.save(b1)).thenReturn(b1);
+        this.barcoService.delete(b1.getId());
+
+        verify(this.barcoRepository).deleteById(b1.getId());
+    }
+
     private Barco createBarco(){
         Barco b1 = new Barco();
 

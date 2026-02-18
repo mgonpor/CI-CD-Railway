@@ -36,4 +36,10 @@ public class BarcoController {
         return ResponseEntity.ok(this.barcoService.save(barco));
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteById(@PathVariable int id) {
+        this.barcoService.delete(id);
+        return ResponseEntity.ok("Eliminada con éxito");
+    }
+
 }
