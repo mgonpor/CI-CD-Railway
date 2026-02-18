@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -36,6 +37,18 @@ public class BarcoServiceTest {
         assertNotNull(result);
         verify(this.barcoRepository).findAll();
         assertEquals(b1.getNombre(), result.getFirst().getNombre());
+    }
+
+    @Test
+    void testFindByIdOk() {
+        Barco b1 = this.createBarco();
+
+        when(this.barcoRepository.findById(b1.getId())).thenReturn(Optional.of(b1));
+        Barco result = this.barcoService.findById(b1.getId());
+
+        assertNotNull(result);
+        verify(this.barcoRepository).findById(b1.getId());
+        assertEquals(b1.getNombre(), result.getNombre());
     }
 
     private Barco createBarco(){

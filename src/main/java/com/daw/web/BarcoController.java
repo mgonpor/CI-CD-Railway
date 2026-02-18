@@ -2,8 +2,12 @@ package com.daw.web;
 
 import com.daw.persistence.entities.Barco;
 import com.daw.service.BarcoService;
+import com.daw.service.exceptions.BarcoNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,8 +20,18 @@ public class BarcoController {
 
     private final BarcoService barcoService;
 
+    @GetMapping
     public ResponseEntity<List<Barco>> listBarcos() {
         return ResponseEntity.ok(this.barcoService.findAll());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findBarcoById(@PathVariable int id) {
+        try{
+            return ResponseEntity.ok(this.barcoService.findById(id));
+        }catch(BarcoNotFoundException e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
     }
 
 }
