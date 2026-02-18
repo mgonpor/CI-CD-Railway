@@ -43,7 +43,7 @@ public class BarcoServiceTest {
 
         b1.setId(0);
         b1.setNombre("Slice of Life");
-        b1.setUsuario("Unknown");
+        b1.setUsuario("Unknown2");
 
         return b1;
     }
