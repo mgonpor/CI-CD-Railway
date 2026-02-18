@@ -28,4 +28,8 @@ public class BarcoService {
 
         return b.get();
     }
+
+    public Barco save(Barco barco) {
+        return this.barcoRepository.save(barco);
+    }
 }
